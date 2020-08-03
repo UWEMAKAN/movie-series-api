@@ -12,7 +12,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "postbuild": "mkdir dist/logs && touch dist/logs/access.log",
-    "test": "jest --detectOpenHandles",
+    "test": "jest --forceExit",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\"",
