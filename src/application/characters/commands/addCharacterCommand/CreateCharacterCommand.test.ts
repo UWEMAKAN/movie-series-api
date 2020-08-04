@@ -2,6 +2,7 @@ import CreateCharacterCommand from './CreateCharacterCommand';
 import CreateCharacterModel from './CreateCharacterModel';
 import * as mockEntities from '../../../../../tools/mockEntities';
 import * as mockData from '../../../../../tools/mockData';
+import Character from '../../../../domain/characters/Character';
 
 describe('CreateCharacterCommand', () => {
   afterAll(() => {
@@ -20,8 +21,9 @@ describe('CreateCharacterCommand', () => {
     model.Location = mockEntities.locations[1];
     const command = new CreateCharacterCommand(mockEntities.characterRepository);
 
-    await command.execute(model);
-    expect.assertions(1);
+    const response = await command.execute(model);
+    expect.assertions(2);
     expect(mockEntities.characterRepository.add).toHaveBeenCalledTimes(1);
+    expect(response).toBeInstanceOf(Character);
   });
 });

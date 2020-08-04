@@ -1,7 +1,7 @@
 import Episode from '../../../../domain/episodes/Episode';
 import Location from '../../../../domain/locations/Location';
 
-class Character {
+class CreateCharacterModel {
   private firstName: string;
   private lastName: string;
   private status: string;
@@ -67,4 +67,4 @@ class Character {
   }
 }
 
-export default Character;
+export default CreateCharacterModel;

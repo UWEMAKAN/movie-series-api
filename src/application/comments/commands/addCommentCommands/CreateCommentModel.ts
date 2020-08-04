@@ -1,6 +1,6 @@
 import Episode from '../../../../domain/episodes/Episode';
 
-class Comment {
+class CreateCommentModel {
   private comment: string;
   private ipAddressLocation: string;
   private episode: Episode;
@@ -30,4 +30,4 @@ class Comment {
   }
 }
 
-export default Comment;
+export default CreateCommentModel;

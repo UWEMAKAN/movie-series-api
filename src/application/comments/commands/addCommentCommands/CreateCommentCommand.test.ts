@@ -2,6 +2,7 @@ import CreateCommentCommand from './CreateCommentCommand';
 import * as mockEntities from '../../../../../tools/mockEntities';
 import * as mockData from '../../../../../tools/mockData';
 import CreateCommentModel from './CreateCommentModel';
+import Comment from '../../../../domain/comments/Comment';
 
 const data = mockData.comments[0];
 
@@ -13,8 +14,9 @@ describe('CreateCommentCommand', () => {
     commentModel.IpAddressLocation = data.ipAddressLocation;
     const command = new CreateCommentCommand(mockEntities.commentRepository);
 
-    await command.execute(commentModel);
-    expect.assertions(1);
+    const response = await command.execute(commentModel);
+    expect.assertions(2);
     expect(mockEntities.commentRepository.add).toHaveBeenCalledTimes(1);
+    expect(response).toBeInstanceOf(Comment);
   });
 });

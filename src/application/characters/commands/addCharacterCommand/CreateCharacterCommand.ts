@@ -12,7 +12,7 @@ class CreateCharacterCommand implements ICreateCharacterCommand {
       this.characterRepository = characterRepository;
   }
 
-  public async execute(model: CreateCharacterModel): Promise<void> {
+  public async execute(model: CreateCharacterModel): Promise<Character> {
     const character = new Character();
     character.FirstName = model.FirstName;
     character.LastName = model.LastName;
@@ -22,7 +22,7 @@ class CreateCharacterCommand implements ICreateCharacterCommand {
     character.Status = model.Status;
     character.StateOfOrigin = model.StateOfOrigin;
     character.Location = model.Location;
-    await this.characterRepository.add(character);
+    return this.characterRepository.add(character);
   }
 }
 

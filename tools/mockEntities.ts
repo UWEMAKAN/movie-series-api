@@ -67,7 +67,7 @@ export const characterRepository: ICharacterRepository = {
   get: jest.fn((id: number) => Promise.resolve(characters[id])),
   add: jest.fn((character: Character) => {
     characters.push(character);
-    return Promise.resolve();
+    return Promise.resolve(character);
   }),
   remove: jest.fn().mockReturnValue(Promise.resolve())
 };
@@ -77,7 +77,7 @@ export const episodeRepository: IEpisodeRepository = {
   get: jest.fn((id: number) => Promise.resolve(episodes[id])),
   add: jest.fn((episode: Episode) => {
     episodes.push(episode);
-    return Promise.resolve();
+    return Promise.resolve(episode);
   }),
   remove: jest.fn().mockReturnValue(Promise.resolve())
 };
@@ -87,7 +87,7 @@ export const locationRepository: ILocationRepository = {
   get: jest.fn((id: number) => Promise.resolve(locations[id])),
   add: jest.fn((location: Location) => {
     locations.push(location);
-    return Promise.resolve();
+    return Promise.resolve(location);
   }),
   remove: jest.fn().mockReturnValue(Promise.resolve())
 };
@@ -97,7 +97,7 @@ export const commentRepository: ICommentRepository = {
   get: jest.fn((id: number) => Promise.resolve(comments[id])),
   add: jest.fn((comment: Comment) => {
     comments.push(comment);
-    return Promise.resolve();
+    return Promise.resolve(comment);
   }),
   remove: jest.fn().mockReturnValue(Promise.resolve())
 };

@@ -10,7 +10,7 @@ class CreateEpisodeCommand implements ICreateEpisodeCommand {
     this.episodeRepository = episodeRepository;
   }
 
-  public async execute(model: CreateEpisodeModel): Promise<void> {
+  public async execute(model: CreateEpisodeModel): Promise<Episode> {
     const episode = new Episode();
     episode.Characters = model.Characters;
     episode.EpisodeCode = model.EpisodeCode;
@@ -18,7 +18,7 @@ class CreateEpisodeCommand implements ICreateEpisodeCommand {
     episode.Name = model.Name;
     episode.ReleaseDate = model.ReleaseDate;
     episode.Created = new Date();
-    await this.episodeRepository.add(episode);
+    return this.episodeRepository.add(episode);
   }
 }
 

@@ -1,3 +1,4 @@
+import Location from '../../../../domain/locations/Location';
 import LocationModel from './LocationModel';
 import CreateLocationCommand from './CreateLocationCommand';
 import * as mockEntities from '../../../../../tools/mockEntities';
@@ -13,8 +14,9 @@ describe('CreateLocationCommand', () => {
     locationModel.Longitude = data.longitude;
     const command = new CreateLocationCommand(mockEntities.locationRepository);
 
-    await command.execute(locationModel);
-    expect.assertions(1);
+    const response = await command.execute(locationModel);
+    expect.assertions(2);
+    expect(response).toBeInstanceOf(Location);
     expect(mockEntities.locationRepository.add).toHaveBeenCalledTimes(1);
   });
 });

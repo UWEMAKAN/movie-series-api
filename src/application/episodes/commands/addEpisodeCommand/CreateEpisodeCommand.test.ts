@@ -1,4 +1,5 @@
 import CreateEpisodeCommand from './CreateEpisodeCommand';
+import Episode from '../../../../domain/episodes/Episode';
 import * as mockEntities from '../../../../../tools/mockEntities';
 import * as mockData from '../../../../../tools/mockData';
 import CreateEpisodeModel from './CreateEpisodeModel';
@@ -15,9 +16,10 @@ describe('CreateEpisodeCommand', () => {
     episodeModel.EpisodeComments = mockEntities.comments;
     const command = new CreateEpisodeCommand(mockEntities.episodeRepository);
 
-    await command.execute(episodeModel);
-    expect.assertions(1);
+    const response = await command.execute(episodeModel);
+    expect.assertions(2);
     expect(mockEntities.episodeRepository.add).toHaveBeenCalledTimes(1);
+    expect(response).toBeInstanceOf(Episode);
   });
 });
 

@@ -10,12 +10,12 @@ class CreateLocationCommand implements ICreateLocationCommand {
     this.locationRepository = locationRepository;
   }
 
-  public async execute(model: LocationModel): Promise<void> {
+  public async execute(model: LocationModel): Promise<Location> {
     const location = new Location();
     location.Latitude = model.Latitude;
     location.Longitude = model.Longitude;
     location.Created = new Date();
-    await this.locationRepository.add(location);
+    return this.locationRepository.add(location);
   }
 }
 

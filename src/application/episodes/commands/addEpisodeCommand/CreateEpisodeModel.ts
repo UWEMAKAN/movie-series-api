@@ -1,7 +1,7 @@
 import Character from '../../../../domain/characters/Character';
 import Comment from '../../../../domain/comments/Comment';
 
-class Episode {
+class CreateEpisodeModel {
   private name: string;
   private releaseDate: Date;
   private episodeCode: string;
@@ -49,4 +49,4 @@ class Episode {
   }
 }
 
-export default Episode;
+export default CreateEpisodeModel;
