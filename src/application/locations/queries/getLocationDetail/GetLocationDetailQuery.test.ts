@@ -7,7 +7,7 @@ describe('GetLocationDetailQuery', () => {
     jest.clearAllMocks();
   });
 
-  it('execute should return an Array of LocationModel', async () => {
+  it('execute should return an object of type LocationModel', async () => {
     const id = 1;
     const query = new GetLocationDetailQuery(mockEntities.locationRepository);
     const result = await query.execute(1);
