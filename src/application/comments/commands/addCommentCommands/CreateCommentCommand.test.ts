@@ -18,4 +18,3 @@ describe('CreateCommentCommand', () => {
     expect(mockEntities.commentRepository.add).toHaveBeenCalledTimes(1);
   });
 });
-

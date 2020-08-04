@@ -2,7 +2,6 @@ import Episode from '../../../../domain/episodes/Episode';
 import Location from '../../../../domain/locations/Location';
 
 class Character {
-  private id: number;
   private firstName: string;
   private lastName: string;
   private status: string;
@@ -10,15 +9,6 @@ class Character {
   private gender: string;
   private location: Location;
   private episodes: Array<Episode>
-  private created: Date;
-
-  public set Created(v : Date) {
-    this.created = v;
-  }
-
-  public get Created() : Date {
-    return this.created;
-  }
 
   public set Episodes(v : Array<Episode>) {
     this.episodes = v;
@@ -58,14 +48,6 @@ class Character {
 
   public get Status() : string {
     return this.status;
-  }
-
-  public set Id(v : number) {
-    this.id = v;
-  }
-
-  public get Id() : number {
-    return this.id;
   }
 
   public set FirstName(v : string) {

@@ -1,5 +1,5 @@
-import CharacterModel from './CharacterModel';
+import CharacterModel from './CreateCharacterModel';
 
 export default interface ICreateCharacterCommand {
-  execute(model: CharacterModel): void;
+  execute(model: CharacterModel): Promise<void>;
 }

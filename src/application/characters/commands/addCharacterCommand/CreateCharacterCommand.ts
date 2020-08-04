@@ -1,29 +1,29 @@
-// import ICreateCharacterCommand from './ICreateCharacterCommand';
-// import CharacterModel from './CharacterModel';
-// import ICharacterRepositoryFacade from './createCharacter/repository/ICharacterRepositoryFacade';
-// import ICharacterFactory from './createCharacter/factory/ICharacterFactory';
+import ICreateCharacterCommand from './ICreateCharacterCommand';
+import CreateCharacterModel from './CreateCharacterModel';
+import Character from '../../../../domain/characters/Character';
+import ICharacterRepository from '../../../interfaces/persistence/ICharacterRepository';
 
-// class CreateCharacterCommand implements ICreateCharacterCommand {
-//   private readonly repositories: ICharacterRepositoryFacade;
-//   private readonly factory: ICharacterFactory;
+class CreateCharacterCommand implements ICreateCharacterCommand {
+  private readonly characterRepository: ICharacterRepository;
 
-//   constructor(
-//     repositories: ICharacterRepositoryFacade,
-//     factory: ICharacterFactory
-//   ) {
-//       this.repositories = repositories;
-//       this.factory = factory;
-//   }
+  constructor(
+    characterRepository: ICharacterRepository,
+  ) {
+      this.characterRepository = characterRepository;
+  }
 
-//   public async execute(model: CharacterModel): Promise<void> {
-//     const location = this.repositories.getLocation()
-//     const quantity = model.Quantity;
-//     const sale = this.factory.create(
-//       date, customer, employee, product, quantity
-//     );
-//     this.repositories.addSale(sale);
-//     this.inventory.notifySaleOcurred(product.Id, quantity);
-//   }
-// }
+  public async execute(model: CreateCharacterModel): Promise<void> {
+    const character = new Character();
+    character.FirstName = model.FirstName;
+    character.LastName = model.LastName;
+    character.Episodes = model.Episodes;
+    character.Created = new Date();
+    character.Gender = model.Gender;
+    character.Status = model.Status;
+    character.StateOfOrigin = model.StateOfOrigin;
+    character.Location = model.Location;
+    await this.characterRepository.add(character);
+  }
+}
 
-// export default CreateCharacterCommand;
+export default CreateCharacterCommand;
