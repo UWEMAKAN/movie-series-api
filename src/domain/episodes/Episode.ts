@@ -17,11 +17,11 @@ class Episode implements IEntity {
   @Column()
   private episodeCode: string;
 
-  @ManyToMany(type => Character)
+  @ManyToMany(type => Character, (character) => character.Episodes)
   @JoinTable()
   private characters: Array<Character>
 
-  @OneToMany(type => Comment, (episodeComment: Comment) => episodeComment.Episode)
+  @OneToMany(type => Comment, (episodeComment) => episodeComment.Episode)
   private episodeComments: Array<Comment>;
 
   @Column()
