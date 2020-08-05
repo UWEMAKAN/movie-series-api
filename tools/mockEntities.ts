@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express';
 import * as mockData from './mockData';
 import Comment from '../src/domain/comments/Comment';
 import Location from '../src/domain/locations/Location';
@@ -7,6 +8,22 @@ import ICharacterRepository from '../src/application/interfaces/persistence/ICha
 import IEpisodeRepository from '../src/application/interfaces/persistence/IEpisodeRepository';
 import ILocationRepository from '../src/application/interfaces/persistence/ILocationRepository';
 import ICommentRepository from '../src/application/interfaces/persistence/ICommentRepository';
+import IGetLocationsListQuery from '../src/application/locations/queries/getLocationsList/IGetLocationsListQuery';
+import IGetLocationDetailQuery from '../src/application/locations/queries/getLocationDetail/IGetLocationDetailQuery';
+import ICreateLocationCommand from '../src/application/locations/commands/addLocationCommand/ICreateLocationCommand';
+import IDeleteLocationCommand from '../src/application/locations/commands/removeLocationCommand/IDeleteLocationCommand';
+import IGetCommentsListQuery from '../src/application/comments/queries/getCommentsListQuery/IGetCommentsListQuery';
+import IGetCommentDetailQuery from '../src/application/comments/queries/getCommentDetailQuery/IGetCommentDetailQuery';
+import ICreateCommentCommand from '../src/application/comments/commands/addCommentCommands/ICreateCommentCommand';
+import IDeleteCommentCommand from '../src/application/comments/commands/removeCommentCommands/IDeleteCommentCommand';
+import IGetEpisodesListQuery from '../src/application/episodes/queries/getEpisodeListQuery/IGetEpisodesListQuery';
+import IGetEpisodeDetailQuery from '../src/application/episodes/queries/getEpisodeDetailQuery/IGetEpisodeDetailQuery';
+import ICreateEpisodeCommand from '../src/application/episodes/commands/addEpisodeCommand/ICreateEpisodeCommand';
+import IDeleteEpisodeCommand from '../src/application/episodes/commands/removeEpisodeCommands/IDeleteEpisodeCommand';
+import IGetCharactersListQuery from '../src/application/characters/queries/getCharactersListQuery/IGetCharactersListQuery';
+import IGetCharacterDetailQuery from '../src/application/characters/queries/getCharacterDetailQuery/IGetCharacterDetailQuery';
+import ICreateCharacterCommand from '../src/application/characters/commands/addCharacterCommand/ICreateCharacterCommand';
+import IDeleteCharacterCommand from '../src/application/characters/commands/removeCharacterCommand/IDeleteCharacterCommand';
 
 const AllComments = mockData.comments.map((data) => {
   const comment = new Comment();
@@ -101,3 +118,95 @@ export const commentRepository: ICommentRepository = {
   }),
   remove: jest.fn().mockReturnValue(Promise.resolve())
 };
+
+/**
+ * Character Queries and Commands
+ */
+export const getCharactersListQuery: IGetCharactersListQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(characters))
+};
+
+export const getCharacterDetailQuery: IGetCharacterDetailQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(characters[0]))
+};
+
+export const createCharacterCommand: ICreateCharacterCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(characters[1]))
+};
+
+export const deleteCharacterCommand: IDeleteCharacterCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve())
+};
+
+/**
+ * Location Queries and Commands
+ */
+export const getLocationsListQuery: IGetLocationsListQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(locations))
+};
+
+export const getLocationDetailQuery: IGetLocationDetailQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(locations[0]))
+};
+
+export const createlocationCommand: ICreateLocationCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(locations[1]))
+};
+
+export const deletelocationCommand: IDeleteLocationCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve())
+};
+
+/**
+ * Comment Queries and Commands
+ */
+export const getCommentsListQuery: IGetCommentsListQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(comments))
+};
+
+export const getCommentDetailQuery: IGetCommentDetailQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(comments[0]))
+};
+
+export const createcommentCommand: ICreateCommentCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(comments[1]))
+};
+
+export const deletecommentCommand: IDeleteCommentCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve())
+};
+
+/**
+ * Episode Queries and Commands
+ */
+export const getEpisodesListQuery: IGetEpisodesListQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(episodes))
+};
+
+export const getEpisodeDetailQuery: IGetEpisodeDetailQuery = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(episodes[0]))
+};
+
+export const createepisodeCommand: ICreateEpisodeCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve(episodes[1]))
+};
+
+export const deleteepisodeCommand: IDeleteEpisodeCommand = {
+  execute: jest.fn().mockReturnValue(Promise.resolve())
+};
+
+/**
+ * Request, Response, NextFunction
+ */
+export const req = {
+  params: {},
+  body: {}
+} as unknown as Request;
+
+export const res = {
+  locals: {},
+  json: jest.fn((object) => Promise.resolve(object))
+} as unknown as Response;
+
+export const next = jest.fn() as NextFunction;
+

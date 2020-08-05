@@ -1,4 +1,4 @@
-import LocationModel from './LocationModel';
+import LocationModel from './CreateLocationModel';
 import Location from '../../../../domain/locations/Location';
 
 export default interface ICreateLocationCommand {

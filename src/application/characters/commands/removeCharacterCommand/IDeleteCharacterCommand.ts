@@ -1,5 +1,5 @@
-import Character from '../../../../domain/characters/Character';
+import DeleteCharacterModel from './DeleteCharacterModel';
 
 export default interface ICreateCharacterCommand {
-  execute(model: Character): Promise<void>;
+  execute(model: DeleteCharacterModel): Promise<void>;
 }

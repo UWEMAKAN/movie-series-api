@@ -1,5 +1,6 @@
 import IDeleteCommentCommand from './IDeleteCommentCommand';
 import ICommentRepository from '../../../interfaces/persistence/ICommentRepository';
+import DeleteCommentModel from './DeleteCommentModel';
 import Comment from '../../../../domain/comments/Comment';
 
 class CreateCommentCommand implements IDeleteCommentCommand {
@@ -9,7 +10,13 @@ class CreateCommentCommand implements IDeleteCommentCommand {
     this.commentRepository = commentRepository;
   }
 
-  public async execute(comment: Comment): Promise<void> {
+  public async execute(model: DeleteCommentModel): Promise<void> {
+    const comment = new Comment();
+    comment.Id = model.Id;
+    comment.Comment = model.Comment;
+    comment.Episode = model.Episode;
+    comment.IpAddressLocation = model.IpAddressLocation;
+    comment.Created = model.Created;
     await this.commentRepository.remove(comment);
   }
 }

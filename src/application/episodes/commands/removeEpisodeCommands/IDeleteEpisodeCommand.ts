@@ -1,5 +1,5 @@
-import Episode from '../../../../domain/episodes/Episode';
+import DeleteEpisodeModel from './DeleteEpisodeModel';
 
 export default interface IDeleteEpisodeCommand {
-  execute(entity: Episode): Promise<void>;
+  execute(entity: DeleteEpisodeModel): Promise<void>;
 }

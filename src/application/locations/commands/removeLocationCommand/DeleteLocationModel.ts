@@ -1,4 +1,4 @@
-class LocationModel {
+class DeleteLocationModel {
   private id: number;
   private name: string;
   private latitude: number;
@@ -46,4 +46,4 @@ class LocationModel {
   }
 }
 
-export default LocationModel;
+export default DeleteLocationModel;

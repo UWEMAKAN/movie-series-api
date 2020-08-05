@@ -52,7 +52,7 @@ class AbstractRepository<T> implements IRepository<T> {
     try {
       const connection: Connection = await this.databaseConnection(this.connectionName);
       const repository: Repository<T> = await connection.getRepository(this.repositoryType);
-      await repository.remove(entity);
+      await repository.remove(entity)
       connection.close();
       return Promise.resolve();
     } catch (err) {

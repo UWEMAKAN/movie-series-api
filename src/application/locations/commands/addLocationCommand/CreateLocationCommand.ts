@@ -1,4 +1,4 @@
-import LocationModel from './LocationModel';
+import CreateLocationModel from './CreateLocationModel';
 import ICreateLocationCommand from './ICreateLocationCommand';
 import ILocationRepository from '../../../interfaces/persistence/ILocationRepository';
 import Location from '../../../../domain/locations/Location';
@@ -10,7 +10,7 @@ class CreateLocationCommand implements ICreateLocationCommand {
     this.locationRepository = locationRepository;
   }
 
-  public async execute(model: LocationModel): Promise<Location> {
+  public async execute(model: CreateLocationModel): Promise<Location> {
     const location = new Location();
     location.Latitude = model.Latitude;
     location.Longitude = model.Longitude;

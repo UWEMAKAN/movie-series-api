@@ -1,5 +1,5 @@
 import Location from '../../../../domain/locations/Location';
-import LocationModel from './LocationModel';
+import CreateLocationModel from './CreateLocationModel';
 import CreateLocationCommand from './CreateLocationCommand';
 import * as mockEntities from '../../../../../tools/mockEntities';
 import * as mockData from '../../../../../tools/mockData';
@@ -8,7 +8,7 @@ const data = mockData.locations[0];
 
 describe('CreateLocationCommand', () => {
   it('execute should create a new object of type Location and call locationRepository.add to save it', async () => {
-    const locationModel = new LocationModel();
+    const locationModel = new CreateLocationModel();
     locationModel.Name = data.name;
     locationModel.Latitude = data.latitude;
     locationModel.Longitude = data.longitude;

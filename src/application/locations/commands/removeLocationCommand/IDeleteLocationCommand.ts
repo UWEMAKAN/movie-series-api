@@ -1,5 +1,5 @@
-import Location from '../../../../domain/locations/Location';
+import DeleteLocationModel from './DeleteLocationModel';
 
 export default interface IDeleteLocationCommand {
-  execute(entity: Location): Promise<void>;
+  execute(model: DeleteLocationModel): Promise<void>;
 }

@@ -1,5 +1,5 @@
 
-class LocationModel {
+class CreateLocationModel {
   private name: string;
   private latitude: number;
   private longitude: number;
@@ -29,4 +29,4 @@ class LocationModel {
   }
 }
 
-export default LocationModel;
+export default CreateLocationModel;

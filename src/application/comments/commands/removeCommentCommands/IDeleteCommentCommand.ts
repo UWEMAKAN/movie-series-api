@@ -1,5 +1,5 @@
-import Comment from '../../../../domain/comments/Comment';
+import DeleteCommentModel from './DeleteCommentModel';
 
 export default interface IDeleteCommentCommand {
-  execute(comment: Comment): Promise<void>;
+  execute(comment: DeleteCommentModel): Promise<void>;
 }
