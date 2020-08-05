@@ -1,5 +1,5 @@
 import Episode from '../../../../domain/episodes/Episode';
-import Location from '../../../../domain/locations/Location';
+import CreateLocationModel from '../../../locations/commands/addLocationCommand/CreateLocationModel';
 
 class CreateCharacterModel {
   private firstName: string;
@@ -7,7 +7,7 @@ class CreateCharacterModel {
   private status: string;
   private stateOfOrigin: string;
   private gender: string;
-  private location: Location;
+  private location: CreateLocationModel;
   private episodes: Array<Episode>
 
   public set Episodes(v : Array<Episode>) {
@@ -18,11 +18,11 @@ class CreateCharacterModel {
     return this.episodes;
   }
 
-  public set Location(v : Location) {
+  public set Location(v : CreateLocationModel) {
     this.location = v;
   }
 
-  public get Location() : Location {
+  public get Location() : CreateLocationModel {
     return this.location;
   }
 

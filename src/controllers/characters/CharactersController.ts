@@ -65,14 +65,14 @@ export default class SalesController {
       locationModel.Latitude = latitude;
       locationModel.Longitude = longitude;
       locationModel.Name = name;
-      const createdLocation = await this.createLocationCommand.execute(locationModel);
+      // const createdLocation = await this.createLocationCommand.execute(locationModel);
 
       const { firstName, lastName, gender, stateOfOrigin, status, episodes } = character;
       const characterModel = new CreateCharacterModel();
       characterModel.FirstName = firstName;
       characterModel.LastName = lastName;
       characterModel.Gender = gender;
-      characterModel.Location = createdLocation;
+      characterModel.Location = locationModel;
       characterModel.StateOfOrigin = stateOfOrigin;
       characterModel.Status = status;
       characterModel.Episodes = episodes;

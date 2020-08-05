@@ -23,7 +23,7 @@ class Character implements IEntity {
   @Column()
   private gender: string;
 
-  @OneToOne(type => Location)
+  @OneToOne(type => Location, { cascade: true })
   @JoinColumn()
   private location: Location;
 
