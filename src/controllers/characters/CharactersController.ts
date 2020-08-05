@@ -66,19 +66,20 @@ export default class SalesController {
       locationModel.Longitude = longitude;
       locationModel.Name = name;
       // const createdLocation = await this.createLocationCommand.execute(locationModel);
+      console.log(this.createLocationCommand.execute(locationModel));
 
-      const { firstName, lastName, gender, stateOfOrigin, status, episodes } = character;
-      const characterModel = new CreateCharacterModel();
-      characterModel.FirstName = firstName;
-      characterModel.LastName = lastName;
-      characterModel.Gender = gender;
-      characterModel.Location = locationModel;
-      characterModel.StateOfOrigin = stateOfOrigin;
-      characterModel.Status = status;
-      characterModel.Episodes = episodes;
+      // const { firstName, lastName, gender, stateOfOrigin, status, episodeIds } = character;
+      // const characterModel = new CreateCharacterModel();
+      // characterModel.FirstName = firstName;
+      // characterModel.LastName = lastName;
+      // characterModel.Gender = gender;
+      // characterModel.LocationId = createdLocation.Id;
+      // characterModel.StateOfOrigin = stateOfOrigin;
+      // characterModel.Status = status;
+      // characterModel.EpisodeIds = episodeIds;
 
-      const response = await this.createCharacterCommand.execute(characterModel);
-      return res.json(response);
+      // const response = await this.createCharacterCommand.execute(characterModel);
+      return res.json({});
     } catch (err) {
       err.status = 400;
       ErrorHandler(err, req, res, next);

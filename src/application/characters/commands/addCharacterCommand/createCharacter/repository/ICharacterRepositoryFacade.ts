@@ -5,5 +5,5 @@ import Location from '../../../../../../domain/locations/Location';
 export default interface ICharacterRepositoryFacade {
   getLocation(locationId: number): Promise<Location>;
   getEpisodes(episodeIds: Array<number>): Promise<Array<Episode>>;
-  addCharacter(character: Character): Promise<void>;
+  addCharacter(character: Character): Promise<Character>;
 }

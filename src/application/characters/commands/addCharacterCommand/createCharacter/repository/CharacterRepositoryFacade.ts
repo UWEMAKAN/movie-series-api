@@ -29,8 +29,8 @@ class CharacterRepositoryFacade implements ICharacterRepositoryFacade {
     });
     return Promise.all(episodes);
   }
-  public async addCharacter(character: Character): Promise<void> {
-    await this.characterRepository.add(character);
+  public async addCharacter(character: Character): Promise<Character> {
+    return this.characterRepository.add(character);
   }
 }
 

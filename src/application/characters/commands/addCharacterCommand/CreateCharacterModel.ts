@@ -1,29 +1,26 @@
-import Episode from '../../../../domain/episodes/Episode';
-import CreateLocationModel from '../../../locations/commands/addLocationCommand/CreateLocationModel';
-
 class CreateCharacterModel {
   private firstName: string;
   private lastName: string;
   private status: string;
   private stateOfOrigin: string;
   private gender: string;
-  private location: CreateLocationModel;
-  private episodes: Array<Episode>
+  private locationId: number;
+  private episodeIds: Array<number>
 
-  public set Episodes(v : Array<Episode>) {
-    this.episodes = v;
+  public set EpisodeIds(v : Array<number>) {
+    this.episodeIds = v;
   }
 
-  public get Episodes() : Array<Episode> {
-    return this.episodes;
+  public get EpisodeIds() : Array<number> {
+    return this.episodeIds;
   }
 
-  public set Location(v : CreateLocationModel) {
-    this.location = v;
+  public set LocationId(v : number) {
+    this.locationId = v;
   }
 
-  public get Location() : CreateLocationModel {
-    return this.location;
+  public get LocationId() : number {
+    return this.locationId;
   }
 
   public set Gender(v : string) {

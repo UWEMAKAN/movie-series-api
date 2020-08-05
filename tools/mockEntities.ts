@@ -24,6 +24,9 @@ import IGetCharactersListQuery from '../src/application/characters/queries/getCh
 import IGetCharacterDetailQuery from '../src/application/characters/queries/getCharacterDetailQuery/IGetCharacterDetailQuery';
 import ICreateCharacterCommand from '../src/application/characters/commands/addCharacterCommand/ICreateCharacterCommand';
 import IDeleteCharacterCommand from '../src/application/characters/commands/removeCharacterCommand/IDeleteCharacterCommand';
+import CreateLocationModel from '../src/application/locations/commands/addLocationCommand/CreateLocationModel';
+// import ICharacterFactory from '../src/application/characters/commands/addCharacterCommand/createCharacter/factory/ICharacterFactory';
+// import ICharacterRepositoryFacade from '../src/application/characters/commands/addCharacterCommand/createCharacter/repository/ICharacterRepositoryFacade';
 
 const AllComments = mockData.comments.map((data) => {
   const comment = new Comment();
@@ -150,7 +153,7 @@ export const getLocationDetailQuery: IGetLocationDetailQuery = {
 };
 
 export const createLocationCommand: ICreateLocationCommand = {
-  execute: jest.fn().mockReturnValue(Promise.resolve(locations[1]))
+  execute: jest.fn((model: CreateLocationModel) => Promise.resolve(locations[1]))
 };
 
 export const deleteLocationCommand: IDeleteLocationCommand = {
@@ -202,7 +205,13 @@ export const req = {
   params: {},
   body: {}
 } as unknown as Request;
-
+export const createCharacterRequest = {
+  params: {},
+  body: {
+    character: { ...mockData.characters[0], episodeIds: [1, 2, 3, 4] },
+    location: { ...mockData.locations[0] }
+  }
+} as unknown as Request;
 export const res = {
   locals: {},
   json: jest.fn((object) => Promise.resolve(object))
