@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import ErrorHandler from '../../common/ErrorHandler';
 import CreateCharacterModel from '../../application/characters/commands/addCharacterCommand/CreateCharacterModel';
 import CreateLocationModel from '../../application/locations/commands/addLocationCommand/CreateLocationModel';
+import DeleteCharacterModel from '../../application/characters/commands/removeCharacterCommand/DeleteCharacterModel';
+import DeleteLocationModel from '../../application/locations/commands/removeLocationCommand/DeleteLocationModel';
 import IGetCharactersListQuery from '../../application/characters/queries/getCharactersListQuery/IGetCharactersListQuery';
 import IGetCharacterDetailQuery from '../../application/characters/queries/getCharacterDetailQuery/IGetCharacterDetailQuery';
 import ICreateCharacterCommand from '../../application/characters/commands/addCharacterCommand/ICreateCharacterCommand';
@@ -65,13 +67,15 @@ export default class SalesController {
       locationModel.Name = name;
       const createdLocation = await this.createLocationCommand.execute(locationModel);
 
-      const { firstName, lastName, gender, status, stateOfOrigin } = character;
+      const { firstName, lastName, gender, stateOfOrigin, status, episodes } = character;
       const characterModel = new CreateCharacterModel();
       characterModel.FirstName = firstName;
       characterModel.LastName = lastName;
       characterModel.Gender = gender;
       characterModel.Location = createdLocation;
-      characterModel.Episodes = [];
+      characterModel.StateOfOrigin = stateOfOrigin;
+      characterModel.Status = status;
+      characterModel.Episodes = episodes;
 
       const response = await this.createCharacterCommand.execute(characterModel);
       return res.json(response);
@@ -87,8 +91,26 @@ export default class SalesController {
       const id = Number(characterId);
       const character = await this.getCharacterDetailQuery.execute(id);
       const location = character.Location;
-      await this.deleteLocationCommand.execute(location);
-      await this.deleteCharacterCommand.execute(character);
+
+      const locationModel = new DeleteLocationModel();
+      locationModel.Id = location.Id;
+      locationModel.Name = location.Name;
+      locationModel.Latitude = location.Latitude;
+      locationModel.Longitude = location.Longitude;
+      locationModel.Created = location.Created;
+      await this.deleteLocationCommand.execute(locationModel);
+
+      const characterModel = new DeleteCharacterModel();
+      characterModel.Id = character.Id;
+      characterModel.FirstName = character.FirstName;
+      characterModel.LastName = character.LastName;
+      characterModel.Gender = character.Gender;
+      characterModel.Location = character.Location;
+      characterModel.StateOfOrigin = character.StateOfOrigin;
+      characterModel.Status = character.Status;
+      characterModel.Created = character.Created;
+      characterModel.Episodes = character.Episodes;
+      await this.deleteCharacterCommand.execute(characterModel);
       return res.json();
     } catch (err) {
       err.status = 400;

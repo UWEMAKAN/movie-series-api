@@ -149,11 +149,11 @@ export const getLocationDetailQuery: IGetLocationDetailQuery = {
   execute: jest.fn().mockReturnValue(Promise.resolve(locations[0]))
 };
 
-export const createlocationCommand: ICreateLocationCommand = {
+export const createLocationCommand: ICreateLocationCommand = {
   execute: jest.fn().mockReturnValue(Promise.resolve(locations[1]))
 };
 
-export const deletelocationCommand: IDeleteLocationCommand = {
+export const deleteLocationCommand: IDeleteLocationCommand = {
   execute: jest.fn().mockReturnValue(Promise.resolve())
 };
 
@@ -168,11 +168,11 @@ export const getCommentDetailQuery: IGetCommentDetailQuery = {
   execute: jest.fn().mockReturnValue(Promise.resolve(comments[0]))
 };
 
-export const createcommentCommand: ICreateCommentCommand = {
+export const createCommentCommand: ICreateCommentCommand = {
   execute: jest.fn().mockReturnValue(Promise.resolve(comments[1]))
 };
 
-export const deletecommentCommand: IDeleteCommentCommand = {
+export const deleteCommentCommand: IDeleteCommentCommand = {
   execute: jest.fn().mockReturnValue(Promise.resolve())
 };
 
@@ -187,11 +187,11 @@ export const getEpisodeDetailQuery: IGetEpisodeDetailQuery = {
   execute: jest.fn().mockReturnValue(Promise.resolve(episodes[0]))
 };
 
-export const createepisodeCommand: ICreateEpisodeCommand = {
+export const createEpisodeCommand: ICreateEpisodeCommand = {
   execute: jest.fn().mockReturnValue(Promise.resolve(episodes[1]))
 };
 
-export const deleteepisodeCommand: IDeleteEpisodeCommand = {
+export const deleteEpisodeCommand: IDeleteEpisodeCommand = {
   execute: jest.fn().mockReturnValue(Promise.resolve())
 };
 
