@@ -26,7 +26,6 @@ describe('CreateCharacterCommand', () => {
     model.Status = data.status;
     model.StateOfOrigin = data.stateOfOrigin;
     model.Gender = data.gender;
-    model.EpisodeIds = mockEntities.episodes.map((e) => e.Id);
     model.LocationId = mockEntities.locations[1].Id;
     const command = new CreateCharacterCommand(factory, repositories);
 

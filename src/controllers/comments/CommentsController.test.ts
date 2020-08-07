@@ -8,9 +8,7 @@ describe('CommentsController', () => {
 
   const controller = new CommentsController(
     mockEntities.getCommentsListQuery,
-    mockEntities.getCommentDetailQuery,
-    mockEntities.createCommentCommand,
-    mockEntities.deleteCommentCommand
+    mockEntities.getCommentDetailQuery
   );
 
   it('should create a CommentsController object', () => {
@@ -19,8 +17,6 @@ describe('CommentsController', () => {
     expect(controller).toMatchObject({
       getCommentsListQuery: expect.any(Object),
       getCommentDetailQuery: expect.any(Object),
-      createCommentCommand: expect.any(Object),
-      deleteCommentCommand: expect.any(Object),
       getAll: expect.any(Function),
       getById: expect.any(Function),
       create: expect.any(Function),

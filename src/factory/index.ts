@@ -11,6 +11,8 @@ import LocationCommandFactory from './locations/command/LocationCommandFactory';
 import CharacterRepositoryFacade from '../application/characters/commands/addCharacterCommand/createCharacter/repository/CharacterRepositoryFacade';
 import CharacterFactory from '../application/characters/commands/addCharacterCommand/createCharacter/factory/CharacterFactory';
 import IFactory from './IFactory';
+import EpisodeRepositoryFacade from '../application/episodes/commands/addEpisodeCommand/createEpisode/repository/EpisodeRepositoryFacade';
+import EpisodeFactory from '../application/episodes/commands/addEpisodeCommand/createEpisode/factory/EpisodeFactory';
 
 function factory(connectionName: string): IFactory {
   const repositoryFactory = new RepositoryFactory(createConnection, connectionName);
@@ -20,6 +22,13 @@ function factory(connectionName: string): IFactory {
     repositoryFactory.episodeRepository,
     repositoryFactory.locationRepository
   );
+
+  const episodeRepositoryFacade = new EpisodeRepositoryFacade(
+    repositoryFactory.characterRepository,
+    repositoryFactory.episodeRepository
+  );
+
+  const episodeFactory = new EpisodeFactory();
 
   const characterFactory = new CharacterFactory();
 
@@ -38,7 +47,8 @@ function factory(connectionName: string): IFactory {
   );
 
   const commentCommand = new CommentCommandFactory(
-    repositoryFactory.commentRepository
+    repositoryFactory.commentRepository,
+    repositoryFactory.episodeRepository
   );
 
   const episodeQuery = new EpisodeQueryFactory(
@@ -46,7 +56,9 @@ function factory(connectionName: string): IFactory {
   );
 
   const episodeCommand = new EpisodeCommandFactory(
-    repositoryFactory.episodeRepository
+    repositoryFactory.episodeRepository,
+    episodeFactory,
+    episodeRepositoryFacade
   );
 
   const locationQuery = new LocationQueryFactory(

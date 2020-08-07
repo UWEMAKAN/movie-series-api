@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 import IEntity from '../common/IEntity';
 import Character from '../characters/Character';
 import Comment from '../comments/Comment';
@@ -17,11 +17,11 @@ class Episode implements IEntity {
   @Column()
   private episodeCode: string;
 
-  @ManyToMany(type => Character, (character) => character.Episodes)
+  @ManyToMany(() => Character, (character) => character.Episodes)
   @JoinTable()
   private characters: Array<Character>
 
-  @OneToMany(type => Comment, (episodeComment) => episodeComment.Episode)
+  @OneToMany(() => Comment, (comment) => comment.Episode)
   private episodeComments: Array<Comment>;
 
   @Column()
@@ -85,3 +85,20 @@ class Episode implements IEntity {
 }
 
 export default Episode;
+
+/**
+ * {
+    // name: "episode_characters_character",
+    // joinColumns: [{ name: "episodeId" }],
+    // inverseJoinColumns: [{ name: "characterId" }]
+    // name: 'episode_characters_character',
+    // joinColumn: {
+    //     name: 'episodes',
+    //     referencedColumnName: 'id'
+    // },
+    // inverseJoinColumn: {
+    //     name: 'characters',
+    //     referencedColumnName: 'id'
+    // }
+  }
+ */

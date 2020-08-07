@@ -9,7 +9,7 @@ class GetEpisodeDetailQuery implements IGetEpisodeDetailQuery {
     this._repository = repository;
   }
   public async execute(id: number): Promise<EpisodeModel> {
-    const data = await this._repository.get(id);
+    const data = await this._repository.getById(id);
     const episode: EpisodeModel = new EpisodeModel();
     episode.Id = data.Id;
     episode.Name = data.Name;

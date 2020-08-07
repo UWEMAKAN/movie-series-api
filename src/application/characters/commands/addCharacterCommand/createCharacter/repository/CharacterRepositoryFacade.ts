@@ -1,10 +1,10 @@
 import ICharacterRepositoryFacade from './ICharacterRepositoryFacade';
 import Character from '../../../../../../domain/characters/Character';
-import Episode from '../../../../../../domain/episodes/Episode';
 import Location from '../../../../../../domain/locations/Location';
 import ICharacterRepository from '../../../../../interfaces/persistence/ICharacterRepository';
-import IEpisodeRepository from '../../../../../interfaces/persistence/IEpisodeRepository';
 import ILocationRepository from '../../../../../interfaces/persistence/ILocationRepository';
+import IEpisodeRepository from '../../../../../interfaces/persistence/IEpisodeRepository';
+import Episode from '../../../../../../domain/episodes/Episode';
 
 class CharacterRepositoryFacade implements ICharacterRepositoryFacade {
   private readonly characterRepository: ICharacterRepository;
@@ -23,8 +23,8 @@ class CharacterRepositoryFacade implements ICharacterRepositoryFacade {
   public async getLocation(locationId: number): Promise<Location> {
     return this.locationRepository.get(locationId);
   }
-  public async getEpisodes(episodeIds: number[]): Promise<Episode[]> {
-    const episodes = episodeIds.map(async (id) => {
+  public async getEpisodes(episodeIds: Array<number>): Promise<Array<Episode>> {
+    const episodes = episodeIds.map((id) => {
       return this.episodeRepository.get(id);
     });
     return Promise.all(episodes);

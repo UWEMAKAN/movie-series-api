@@ -1,7 +1,6 @@
 import * as mockEntities from '../../../../../../../tools/mockEntities';
 import CharacterRepositoryFacade from './CharacterRepositoryFacade';
 import Character from '../../../../../../domain/characters/Character';
-import Episode from '../../../../../../domain/episodes/Episode';
 import Location from '../../../../../../domain/locations/Location';
 
 describe('CharacterRepositoryFacade', () => {
@@ -22,12 +21,11 @@ describe('CharacterRepositoryFacade', () => {
     expect(location).toBeInstanceOf(Location);
   });
 
-  it('getEpisodes should return an Array of Episode objects', async () => {
-    const ids = [1, 3, 2, 4, 5];
+  it('getEpisodes should return an Array of Episode objects when called', async () => {
+    const ids = [2, 3, 1];
     const episodes = await facade.getEpisodes(ids);
-    expect.assertions(2);
+    expect.assertions(1);
     expect(episodes).toBeInstanceOf(Array);
-    expect(episodes[1]).toBeInstanceOf(Episode);
   });
 
   it('addCharacter should call characterRepository.add method', async () => {

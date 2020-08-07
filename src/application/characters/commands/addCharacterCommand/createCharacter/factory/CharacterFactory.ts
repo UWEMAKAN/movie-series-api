@@ -1,7 +1,7 @@
 import ICharacterFactory from './ICharacterFactory';
 import Character from '../../../../../../domain/characters/Character';
-import Episode from '../../../../../../domain/episodes/Episode';
 import Location from '../../../../../../domain/locations/Location';
+import Episode from '../../../../../../domain/episodes/Episode';
 
 class CharacterFactory implements ICharacterFactory {
   public create(
@@ -10,8 +10,8 @@ class CharacterFactory implements ICharacterFactory {
     status: string,
     gender: string,
     stateOfOrigin: string,
-    location: Location,
     episodes: Array<Episode>,
+    location: Location,
     created: Date
   ): Character {
     const character = new Character();
@@ -19,9 +19,9 @@ class CharacterFactory implements ICharacterFactory {
     character.LastName = lastName;
     character.Gender = gender;
     character.StateOfOrigin = stateOfOrigin;
+    character.Episodes = episodes;
     character.Status = status;
     character.Location = location;
-    character.Episodes = episodes;
     character.Created = created;
     return character;
   }

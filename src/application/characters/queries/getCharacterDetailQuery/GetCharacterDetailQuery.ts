@@ -9,7 +9,7 @@ class GetCharacterDetailQuery implements IGetCharacterDetailQuery {
     this._repository = repository;
   }
   public async execute(id: number): Promise<CharacterModel> {
-    const data = await this._repository.get(id);
+    const data = await this._repository.getById(id);
     const character: CharacterModel = new CharacterModel();
     character.Id = data.Id;
     character.FirstName = data.FirstName;

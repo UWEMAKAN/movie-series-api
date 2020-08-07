@@ -20,8 +20,8 @@ describe('SaleFactory', () => {
       data.status,
       data.gender,
       data.stateOfOrigin,
-      location,
       episodes,
+      location,
       created
     );
     expect.assertions(1);

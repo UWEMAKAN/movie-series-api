@@ -14,7 +14,6 @@ class CreateCommentCommand implements IDeleteCommentCommand {
     const comment = new Comment();
     comment.Id = model.Id;
     comment.Comment = model.Comment;
-    comment.Episode = model.Episode;
     comment.IpAddressLocation = model.IpAddressLocation;
     comment.Created = model.Created;
     await this.commentRepository.remove(comment);

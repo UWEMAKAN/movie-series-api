@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import IEntity from '../common/IEntity';
 import Episode from '../episodes/Episode';
 
@@ -13,7 +13,7 @@ class Comment implements IEntity {
   @Column()
   private ipAddressLocation: string;
 
-  @ManyToOne(type => Episode, (episode: Episode) => episode.EpisodeComments)
+  @ManyToOne(() => Episode, (episode) => episode.EpisodeComments)
   private episode: Episode;
 
   @Column()

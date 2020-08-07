@@ -65,21 +65,20 @@ export default class SalesController {
       locationModel.Latitude = latitude;
       locationModel.Longitude = longitude;
       locationModel.Name = name;
-      // const createdLocation = await this.createLocationCommand.execute(locationModel);
-      console.log(this.createLocationCommand.execute(locationModel));
+      const createdLocation = await this.createLocationCommand.execute(locationModel);
 
-      // const { firstName, lastName, gender, stateOfOrigin, status, episodeIds } = character;
-      // const characterModel = new CreateCharacterModel();
-      // characterModel.FirstName = firstName;
-      // characterModel.LastName = lastName;
-      // characterModel.Gender = gender;
-      // characterModel.LocationId = createdLocation.Id;
-      // characterModel.StateOfOrigin = stateOfOrigin;
-      // characterModel.Status = status;
-      // characterModel.EpisodeIds = episodeIds;
+      const { firstName, lastName, gender, stateOfOrigin, status, episodeIds } = character;
+      const characterModel = new CreateCharacterModel();
+      characterModel.FirstName = firstName;
+      characterModel.LastName = lastName;
+      characterModel.Gender = gender;
+      characterModel.LocationId = createdLocation.Id;
+      characterModel.StateOfOrigin = stateOfOrigin;
+      characterModel.Status = status;
+      characterModel.EpisodeIds = episodeIds;
 
-      // const response = await this.createCharacterCommand.execute(characterModel);
-      return res.json({});
+      const response = await this.createCharacterCommand.execute(characterModel);
+      return res.json(response);
     } catch (err) {
       err.status = 400;
       ErrorHandler(err, req, res, next);
@@ -92,27 +91,28 @@ export default class SalesController {
       const id = Number(characterId);
       const character = await this.getCharacterDetailQuery.execute(id);
       const location = character.Location;
+      console.log(location);
 
-      const locationModel = new DeleteLocationModel();
-      locationModel.Id = location.Id;
-      locationModel.Name = location.Name;
-      locationModel.Latitude = location.Latitude;
-      locationModel.Longitude = location.Longitude;
-      locationModel.Created = location.Created;
-      await this.deleteLocationCommand.execute(locationModel);
+      // const locationModel = new DeleteLocationModel();
+      // locationModel.Id = location.Id;
+      // locationModel.Name = location.Name;
+      // locationModel.Latitude = location.Latitude;
+      // locationModel.Longitude = location.Longitude;
+      // locationModel.Created = location.Created;
+      // await this.deleteLocationCommand.execute(locationModel);
 
-      const characterModel = new DeleteCharacterModel();
-      characterModel.Id = character.Id;
-      characterModel.FirstName = character.FirstName;
-      characterModel.LastName = character.LastName;
-      characterModel.Gender = character.Gender;
-      characterModel.Location = character.Location;
-      characterModel.StateOfOrigin = character.StateOfOrigin;
-      characterModel.Status = character.Status;
-      characterModel.Created = character.Created;
-      characterModel.Episodes = character.Episodes;
-      await this.deleteCharacterCommand.execute(characterModel);
-      return res.json();
+      // const characterModel = new DeleteCharacterModel();
+      // characterModel.Id = character.Id;
+      // characterModel.FirstName = character.FirstName;
+      // characterModel.LastName = character.LastName;
+      // characterModel.Gender = character.Gender;
+      // characterModel.Location = character.Location;
+      // characterModel.StateOfOrigin = character.StateOfOrigin;
+      // characterModel.Status = character.Status;
+      // characterModel.Created = character.Created;
+      // characterModel.Episodes = character.Episodes;
+      // await this.deleteCharacterCommand.execute(characterModel);
+      return res.json(character);
     } catch (err) {
       err.status = 400;
       ErrorHandler(err, req, res, next);

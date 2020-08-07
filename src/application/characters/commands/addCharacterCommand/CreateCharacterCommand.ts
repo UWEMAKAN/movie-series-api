@@ -1,8 +1,6 @@
 import ICreateCharacterCommand from './ICreateCharacterCommand';
 import CreateCharacterModel from './CreateCharacterModel';
 import Character from '../../../../domain/characters/Character';
-import ICharacterRepository from '../../../interfaces/persistence/ICharacterRepository';
-import ILocationRepository from '../../../interfaces/persistence/ILocationRepository';
 import ICharacterFactory from './createCharacter/factory/ICharacterFactory';
 import ICharacterRepositoryFacade from './createCharacter/repository/ICharacterRepositoryFacade';
 
@@ -27,7 +25,8 @@ class CreateCharacterCommand implements ICreateCharacterCommand {
       model.Status,
       model.Gender,
       model.StateOfOrigin,
-      location,episodes,
+      episodes,
+      location,
       new Date()
     );
     return this.repositories.addCharacter(character);

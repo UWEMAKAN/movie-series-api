@@ -14,6 +14,7 @@ class CreateLocationCommand implements ICreateLocationCommand {
     const location = new Location();
     location.Latitude = model.Latitude;
     location.Longitude = model.Longitude;
+    location.Name = model.Name;
     location.Created = new Date();
     return this.locationRepository.add(location);
   }

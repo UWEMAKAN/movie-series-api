@@ -3,9 +3,17 @@ class CreateCharacterModel {
   private lastName: string;
   private status: string;
   private stateOfOrigin: string;
+  private episodeIds: Array<number>;
   private gender: string;
   private locationId: number;
-  private episodeIds: Array<number>
+
+  public set LocationId(v: number) {
+    this.locationId = v;
+  }
+
+  public get LocationId(): number {
+    return this.locationId;
+  }
 
   public set EpisodeIds(v : Array<number>) {
     this.episodeIds = v;
@@ -15,51 +23,43 @@ class CreateCharacterModel {
     return this.episodeIds;
   }
 
-  public set LocationId(v : number) {
-    this.locationId = v;
-  }
-
-  public get LocationId() : number {
-    return this.locationId;
-  }
-
-  public set Gender(v : string) {
+  public set Gender(v: string) {
     this.gender = v;
   }
 
-  public get Gender() : string {
+  public get Gender(): string {
     return this.gender;
   }
 
-  public set StateOfOrigin(v : string) {
+  public set StateOfOrigin(v: string) {
     this.stateOfOrigin = v;
   }
 
-  public get StateOfOrigin() : string {
+  public get StateOfOrigin(): string {
     return this.stateOfOrigin;
   }
 
-  public set Status(v : string) {
+  public set Status(v: string) {
     this.status = v;
   }
 
-  public get Status() : string {
+  public get Status(): string {
     return this.status;
   }
 
-  public set FirstName(v : string) {
+  public set FirstName(v: string) {
     this.firstName = v;
   }
 
-  public get FirstName() : string {
+  public get FirstName(): string {
     return this.firstName;
   }
 
-  public set LastName(v : string) {
+  public set LastName(v: string) {
     this.lastName = v;
   }
 
-  public get LastName() : string {
+  public get LastName(): string {
     return this.lastName;
   }
 }

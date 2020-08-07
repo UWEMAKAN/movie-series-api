@@ -9,8 +9,8 @@ export default interface ICharacterFactory {
     status: string,
     gender: string,
     stateOfOrigin: string,
-    location: Location,
     episodes: Array<Episode>,
+    location: Location,
     created: Date
   ): Character;
 }

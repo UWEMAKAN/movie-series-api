@@ -1,27 +1,15 @@
-import Character from '../../../../domain/characters/Character';
-import Comment from '../../../../domain/comments/Comment';
-
 class CreateEpisodeModel {
   private name: string;
   private releaseDate: Date;
   private episodeCode: string;
-  private characters: Array<Character>
-  private episodeComments: Array<Comment>;
+  private characterIds: Array<number>;
 
-  public set EpisodeComments(v : Array<Comment>) {
-    this.episodeComments = v;
+  public set CharacterIds(v : Array<number>) {
+    this.characterIds = v;
   }
 
-  public get EpisodeComments() : Array<Comment> {
-    return this.episodeComments;
-  }
-
-  public set Characters(v : Array<Character>) {
-    this.characters = v;
-  }
-
-  public get Characters() : Array<Character> {
-    return this.characters;
+  public get CharacterIds() : Array<number> {
+    return this.characterIds;
   }
 
   public set EpisodeCode(v : string) {
