@@ -17,10 +17,10 @@ class AbstractRepository<T> implements IRepository<T> {
     try {
       const repository: Repository<T> = await connection.getRepository(this.repositoryType);
       const objects: Array<T> = await repository.find();
-      connection.close();
+      await connection.close();
       return objects;
     } catch (err) {
-      connection.close();
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }
@@ -30,10 +30,10 @@ class AbstractRepository<T> implements IRepository<T> {
     try {
       const repository: Repository<T> = await connection.getRepository(this.repositoryType);
       const object = await repository.findOne(id);
-      connection.close();
+      await connection.close();
       return object ? object : new Object() as T;
     } catch (err) {
-      connection.close();
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }
@@ -43,10 +43,11 @@ class AbstractRepository<T> implements IRepository<T> {
     try {
       const repository: Repository<T> = await connection.getRepository(this.repositoryType);
       const object = await repository.save(entity);
-      connection.close();
+      await connection.close();
+      console.log(object);
       return object;
     } catch (err) {
-      connection.close();
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }
@@ -56,10 +57,10 @@ class AbstractRepository<T> implements IRepository<T> {
     try {
       const repository: Repository<T> = await connection.getRepository(this.repositoryType);
       await repository.remove(entity)
-      connection.close();
+      await connection.close();
       return Promise.resolve();
     } catch (err) {
-      connection.close();
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }

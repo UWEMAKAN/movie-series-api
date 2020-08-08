@@ -16,7 +16,7 @@ class DeleteEpisodeCommand implements IDeleteEpisodeCommand {
     episode.Name = model.Name;
     episode.ReleaseDate = model.ReleaseDate;
     episode.EpisodeCode = model.EpisodeCode;
-    episode.EpisodeComments = model.EpisodeComments;
+    episode.Comments = model.Comments;
     episode.Characters = model.Characters;
     episode.Created = model.Created;
     await this.episodeRepository.remove(episode);

@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+// import { createConnection } from 'typeorm';
 import http, { Server } from 'http';
 import express, { Response, Request } from 'express';
 import factory from './factory';
@@ -11,6 +12,8 @@ const app = express();
 config(app);
 
 const PORT = process.env.PORT || 4000;
+
+// const connection = await createConnection();
 
 const dependencies = factory('default');
 const router = routes(dependencies);

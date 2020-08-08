@@ -13,17 +13,33 @@ class CharacterRepository extends AbstractRepository<Character> implements IChar
     const connection: Connection = await this.databaseConnection(this.connectionName);
     try {
       const repository: Repository<Character> = await connection.getRepository(this.repositoryType);
-      // const character = await repository.findOne(id, { relations: ['location'] });
       const character = await repository.createQueryBuilder('character')
       .leftJoinAndSelect('character.episodes', 'episode')
       .leftJoinAndSelect('character.location', 'location')
       .where('character.id = :id', { id })
       .getOne();
 
-      connection.close();
+      await connection.close();
       return character ? character : new Character();
     } catch (err) {
-      connection.close();
+      await connection.close();
+      logger.debug(err.stack);
+      throw err;
+    }
+  }
+
+  public async getAll(): Promise<Array<Character>> {
+    const connection: Connection = await this.databaseConnection(this.connectionName);
+    try {
+      const repository: Repository<Character> = await connection.getRepository(this.repositoryType);
+      const characters = await repository.createQueryBuilder('character')
+      .leftJoinAndSelect('character.episodes', 'episode')
+      .leftJoinAndSelect('character.location', 'location')
+      .getMany();
+      await connection.close();
+      return characters;
+    } catch (err) {
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }

@@ -7,7 +7,7 @@ class Episode {
   private releaseDate: Date;
   private episodeCode: string;
   private characters: Array<Character>
-  private episodeComments: Array<Comment>;
+  private comments: Array<Comment>;
   private created: Date;
 
   public set Created(v : Date) {
@@ -18,12 +18,12 @@ class Episode {
     return this.created;
   }
 
-  public set EpisodeComments(v : Array<Comment>) {
-    this.episodeComments = v;
+  public set Comments(v : Array<Comment>) {
+    this.comments = v;
   }
 
-  public get EpisodeComments() : Array<Comment> {
-    return this.episodeComments;
+  public get Comments() : Array<Comment> {
+    return this.comments;
   }
 
   public set Characters(v : Array<Character>) {

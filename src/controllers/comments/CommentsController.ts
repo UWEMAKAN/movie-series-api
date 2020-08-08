@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import ErrorHandler from '../../common/ErrorHandler';
+import { sortComments } from './utils';
 import IGetCommentsListQuery from '../../application/comments/queries/getCommentsListQuery/IGetCommentsListQuery';
 import IGetCommentDetailQuery from '../../application/comments/queries/getCommentDetailQuery/IGetCommentDetailQuery';
 
-export default class SalesController {
+export default class CommentsController {
   private readonly getCommentsListQuery: IGetCommentsListQuery;
   private readonly getCommentDetailQuery: IGetCommentDetailQuery;
 
@@ -18,7 +19,8 @@ export default class SalesController {
   public getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const response = await this.getCommentsListQuery.execute();
-      return res.json(response);
+      const comments = sortComments(response);
+      return res.json(comments);
     } catch (err) {
       err.status = 400;
       ErrorHandler(err, req, res, next);

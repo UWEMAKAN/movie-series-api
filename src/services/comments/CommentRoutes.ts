@@ -10,7 +10,8 @@ function router(dependencies: IFactory): Router {
   );
   CommentRouter.route('/')
     .get(controller.getAll);
-  CommentRouter.route('/:CommentId').get(controller.getById);
+  CommentRouter.route('/:commentId')
+    .get(controller.getById);
   return CommentRouter;
 }
 

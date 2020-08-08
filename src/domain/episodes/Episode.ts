@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import IEntity from '../common/IEntity';
 import Character from '../characters/Character';
 import Comment from '../comments/Comment';
@@ -17,88 +17,71 @@ class Episode implements IEntity {
   @Column()
   private episodeCode: string;
 
-  @ManyToMany(() => Character, (character) => character.Episodes)
+  @ManyToMany(() => Character, (character) => character.episodes)
   @JoinTable()
-  private characters: Array<Character>
+  public characters: Array<Character>;
 
-  @OneToMany(() => Comment, (comment) => comment.Episode)
-  private episodeComments: Array<Comment>;
+  @OneToMany(() => Comment, (comment: Comment) => comment.episode, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  public comments: Array<Comment>;
 
   @Column()
   private created: Date;
 
-  public set Created(v : Date) {
+  public set Created(v: Date) {
     this.created = v;
   }
 
-  public get Created() : Date {
+  public get Created(): Date {
     return this.created;
   }
 
-  public set EpisodeComments(v : Array<Comment>) {
-    this.episodeComments = v;
+  public set Comments(v: Array<Comment>) {
+    this.comments = v;
   }
 
-  public get EpisodeComments() : Array<Comment> {
-    return this.episodeComments;
+  public get Comments(): Array<Comment> {
+    return this.comments;
   }
 
-  public set Characters(v : Array<Character>) {
+  public set Characters(v: Array<Character>) {
     this.characters = v;
   }
 
-  public get Characters() : Array<Character> {
+  public get Characters(): Array<Character> {
     return this.characters;
   }
 
-  public set EpisodeCode(v : string) {
+  public set EpisodeCode(v: string) {
     this.episodeCode = v;
   }
 
-  public get EpisodeCode() : string {
+  public get EpisodeCode(): string {
     return this.episodeCode;
   }
 
-  public set ReleaseDate(v : Date) {
+  public set ReleaseDate(v: Date) {
     this.releaseDate = v;
   }
 
-  public get ReleaseDate() : Date {
+  public get ReleaseDate(): Date {
     return this.releaseDate;
   }
 
-  public set Name(v : string) {
+  public set Name(v: string) {
     this.name = v;
   }
 
-  public get Name() : string {
+  public get Name(): string {
     return this.name;
   }
 
-  public set Id(v : number) {
+  public set Id(v: number) {
     this.id = v;
   }
 
-  public get Id() : number {
+  public get Id(): number {
     return this.id;
   }
 }
 
 export default Episode;
-
-/**
- * {
-    // name: "episode_characters_character",
-    // joinColumns: [{ name: "episodeId" }],
-    // inverseJoinColumns: [{ name: "characterId" }]
-    // name: 'episode_characters_character',
-    // joinColumn: {
-    //     name: 'episodes',
-    //     referencedColumnName: 'id'
-    // },
-    // inverseJoinColumn: {
-    //     name: 'characters',
-    //     referencedColumnName: 'id'
-    // }
-  }
- */

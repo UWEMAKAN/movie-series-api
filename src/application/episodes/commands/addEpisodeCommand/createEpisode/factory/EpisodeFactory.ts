@@ -14,7 +14,7 @@ class EpisodeFactory implements IEpisodeFactory {
     episode.Name = name;
     episode.ReleaseDate = releaseDate;
     episode.EpisodeCode = episodeCode;
-    episode.EpisodeComments = [];
+    episode.Comments = [];
     episode.Characters = characters;
     episode.Created = created;
     return episode;

@@ -15,15 +15,14 @@ class EpisodeRepository extends AbstractRepository<Episode> implements IEpisodeR
       const repository: Repository<Episode> = await connection.getRepository(this.repositoryType);
       const episodes: Array<Episode> = await repository
         .createQueryBuilder('episode')
-        .leftJoinAndSelect('episode.episodeComments', 'comment')
+        .leftJoinAndSelect('episode.characters', 'character')
+        .leftJoinAndSelect('episode.comments', 'comment')
         .getMany();
-      episodes.sort((a, b) => {
-        return Number(a.ReleaseDate) - Number(b.ReleaseDate);
-      })
-      connection.close();
+      await connection.close();
       return episodes;
     } catch (err) {
-      connection.close();
+      console.log(err)
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }
@@ -35,13 +34,27 @@ class EpisodeRepository extends AbstractRepository<Episode> implements IEpisodeR
       const repository: Repository<Episode> = await connection.getRepository(this.repositoryType);
       const episode = await repository.createQueryBuilder('episode')
       .leftJoinAndSelect('episode.characters', 'character')
-      .leftJoinAndSelect('episode.episodeComments', 'comment')
-      .where('episode.id = :id', { id })
+      .leftJoinAndSelect('episode.comments', 'comment')
+      .where('episode.id = :episodeId', { episodeId: id })
       .getOne();
-      connection.close();
+      await connection.close();
       return episode ? episode : new Episode();
     } catch (err) {
-      connection.close();
+      await connection.close();
+      logger.debug(err.stack);
+      throw err;
+    }
+  }
+
+  public async update(episode: Episode): Promise<Episode> {
+    const connection: Connection = await this.databaseConnection(this.connectionName);
+    try {
+      const repository: Repository<Episode> = await connection.getRepository(this.repositoryType);
+      const object = await repository.save(episode);
+      await connection.close();
+      return object;
+    } catch (err) {
+      await connection.close();
       logger.debug(err.stack);
       throw err;
     }

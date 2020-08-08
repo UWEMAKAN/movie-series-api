@@ -1,15 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import ErrorHandler from '../../common/ErrorHandler';
+import { sortAndCount, searchCharacterEpisodesFeatures } from './utils';
 import CreateEpisodeModel from '../../application/episodes/commands/addEpisodeCommand/CreateEpisodeModel';
 import CreateCommentModel from '../../application/comments/commands/addCommentCommand/CreateCommentModel';
 import DeleteCommentModel from '../../application/comments/commands/removeCommentCommand/DeleteCommentModel';
-import IGetEpisodesListQuery from '../../application/episodes/queries/getEpisodeListQuery/IGetEpisodesListQuery';;
+import IGetEpisodesListQuery from '../../application/episodes/queries/getEpisodeListQuery/IGetEpisodesListQuery';
 import IGetEpisodeDetailQuery from '../../application/episodes/queries/getEpisodeDetailQuery/IGetEpisodeDetailQuery';
 import ICreateEpisodeCommand from '../../application/episodes/commands/addEpisodeCommand/ICreateEpisodeCommand';
 import IDeleteEpisodeCommand from '../../application/episodes/commands/removeEpisodeCommand/IDeleteEpisodeCommand';
 import ICreateCommentCommand from '../../application/comments/commands/addCommentCommand/ICreateCommentCommand';
 import IDeleteCommentCommand from '../../application/comments/commands/removeCommentCommand/IDeleteCommentCommand';
 import DeleteEpisodeModel from '../../application/episodes/commands/removeEpisodeCommand/DeleteEpisodeModel';
+import { sortAndFilterCharacters } from '../characters/utils';
 
 export default class EpisodesController {
   private readonly getEpisodesListQuery: IGetEpisodesListQuery;
@@ -37,13 +39,20 @@ export default class EpisodesController {
 
   public getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const response = await this.getEpisodesListQuery.execute();
-      return res.json(response);
+      const { character } = req.query;
+      let response = await this.getEpisodesListQuery.execute();
+      if (character && Number.parseInt(character as string)) {
+        const id = Number.parseInt(character as string);
+        response = searchCharacterEpisodesFeatures(response, id);
+      }
+      const episodes = sortAndCount(response);
+      return res.json(episodes);
     } catch (err) {
       err.status = 400;
+      console.log(err);
       ErrorHandler(err, req, res, next);
     }
-  }
+  };
 
   public getById = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -55,7 +64,7 @@ export default class EpisodesController {
       err.status = 400;
       ErrorHandler(err, req, res, next);
     }
-  }
+  };
 
   public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -71,16 +80,17 @@ export default class EpisodesController {
       return res.json(response);
     } catch (err) {
       err.status = 400;
-      ErrorHandler(err, req, res, next);
+      // ErrorHandler(err, req, res, next);
+      res.json('Failed');
     }
-  }
+  };
 
   public delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { episodeId } = req.params;
       const id = Number(episodeId);
       const episode = await this.getEpisodeDetailQuery.execute(id);
-      const episodeComments = episode.EpisodeComments;
+      const episodeComments = episode.Comments;
 
       const commentModels = episodeComments.map((episodeComment) => {
         const model = new DeleteCommentModel();
@@ -101,7 +111,7 @@ export default class EpisodesController {
       err.status = 400;
       ErrorHandler(err, req, res, next);
     }
-  }
+  };
 
   public createComment = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -120,7 +130,7 @@ export default class EpisodesController {
       err.status = 400;
       ErrorHandler(err, req, res, next);
     }
-  }
+  };
 
   // public deleteComment = async (req: Request, res: Response, next: NextFunction) => {
   //   try {

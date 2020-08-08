@@ -14,12 +14,12 @@ import ICreateLocationCommand from '../src/application/locations/commands/addLoc
 import IDeleteLocationCommand from '../src/application/locations/commands/removeLocationCommand/IDeleteLocationCommand';
 import IGetCommentsListQuery from '../src/application/comments/queries/getCommentsListQuery/IGetCommentsListQuery';
 import IGetCommentDetailQuery from '../src/application/comments/queries/getCommentDetailQuery/IGetCommentDetailQuery';
-import ICreateCommentCommand from '../src/application/comments/commands/addCommentCommands/ICreateCommentCommand';
-import IDeleteCommentCommand from '../src/application/comments/commands/removeCommentCommands/IDeleteCommentCommand';
+import ICreateCommentCommand from '../src/application/comments/commands/addCommentCommand/ICreateCommentCommand';
+import IDeleteCommentCommand from '../src/application/comments/commands/removeCommentCommand/IDeleteCommentCommand';
 import IGetEpisodesListQuery from '../src/application/episodes/queries/getEpisodeListQuery/IGetEpisodesListQuery';
 import IGetEpisodeDetailQuery from '../src/application/episodes/queries/getEpisodeDetailQuery/IGetEpisodeDetailQuery';
 import ICreateEpisodeCommand from '../src/application/episodes/commands/addEpisodeCommand/ICreateEpisodeCommand';
-import IDeleteEpisodeCommand from '../src/application/episodes/commands/removeEpisodeCommands/IDeleteEpisodeCommand';
+import IDeleteEpisodeCommand from '../src/application/episodes/commands/removeEpisodeCommand/IDeleteEpisodeCommand';
 import IGetCharactersListQuery from '../src/application/characters/queries/getCharactersListQuery/IGetCharactersListQuery';
 import IGetCharacterDetailQuery from '../src/application/characters/queries/getCharacterDetailQuery/IGetCharacterDetailQuery';
 import ICreateCharacterCommand from '../src/application/characters/commands/addCharacterCommand/ICreateCharacterCommand';
@@ -85,6 +85,7 @@ export const comments = AllComments.map((comment, index) => {
 export const characterRepository: ICharacterRepository = {
   getAll: jest.fn().mockReturnValue(Promise.resolve(characters)),
   get: jest.fn((id: number) => Promise.resolve(characters[id])),
+  getById: jest.fn((id: number) => Promise.resolve(characters[id])),
   add: jest.fn((character: Character) => {
     characters.push(character);
     return Promise.resolve(character);
@@ -95,6 +96,7 @@ export const characterRepository: ICharacterRepository = {
 export const episodeRepository: IEpisodeRepository = {
   getAll: jest.fn().mockReturnValue(Promise.resolve(episodes)),
   get: jest.fn((id: number) => Promise.resolve(episodes[id])),
+  getById: jest.fn((id: number) => Promise.resolve(episodes[id])),
   add: jest.fn((episode: Episode) => {
     episodes.push(episode);
     return Promise.resolve(episode);

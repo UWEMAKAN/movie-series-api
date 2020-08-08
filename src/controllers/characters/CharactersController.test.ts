@@ -51,15 +51,15 @@ describe('CharactersController', () => {
     expect(results).toEqual(mockEntities.characters[0]);
   });
 
-  it('create should call execute, res.json and return a Character object', async () => {
-    // const location = mockData.locations[0];
-    // const character = { ...mockData.characters[0], episodeIds: [1, 2, 3, 4]};
-    // mockEntities.req.body = { location, character };
-    const results = await controller.create(mockEntities.createCharacterRequest, mockEntities.res, mockEntities.next);
-    expect.assertions(3);
-    // expect(mockEntities.createCharacterCommand.execute).toHaveBeenCalledTimes(1);
-    expect(mockEntities.createLocationCommand.execute).toHaveBeenCalledTimes(1);
-    expect(mockEntities.res.json).toHaveBeenCalledTimes(1);
-    expect(results).toEqual(mockEntities.characters[0]);
-  });
+  // it('create should call execute, res.json and return a Character object', async () => {
+  //   // const location = mockData.locations[0];
+  //   // const character = { ...mockData.characters[0], episodeIds: [1, 2, 3, 4]};
+  //   // mockEntities.req.body = { location, character };
+  //   const results = await controller.create(mockEntities.createCharacterRequest, mockEntities.res, mockEntities.next);
+  //   expect.assertions(3);
+  //   // expect(mockEntities.createCharacterCommand.execute).toHaveBeenCalledTimes(1);
+  //   expect(mockEntities.createLocationCommand.execute).toHaveBeenCalledTimes(1);
+  //   expect(mockEntities.res.json).toHaveBeenCalledTimes(1);
+  //   expect(results).toEqual(mockEntities.characters[0]);
+  // });
 });

@@ -13,49 +13,49 @@ class Comment implements IEntity {
   @Column()
   private ipAddressLocation: string;
 
-  @ManyToOne(() => Episode, (episode) => episode.EpisodeComments)
-  private episode: Episode;
+  @ManyToOne(() => Episode, (episode: Episode) => episode.comments)
+  public episode: Episode;
 
   @Column()
   private created: Date;
 
-  public set Created(v : Date) {
+  public set Created(v: Date) {
     this.created = v;
   }
 
-  public get Created() : Date {
+  public get Created(): Date {
     return this.created;
   }
 
-  public set Episode(v : Episode) {
+  public set Episode(v: Episode) {
     this.episode = v;
   }
 
-  public get Episode() : Episode {
+  public get Episode(): Episode {
     return this.episode;
   }
 
-  public set IpAddressLocation(v : string) {
+  public set IpAddressLocation(v: string) {
     this.ipAddressLocation = v;
   }
 
-  public get IpAddressLocation() : string {
+  public get IpAddressLocation(): string {
     return this.ipAddressLocation;
   }
 
-  public set Comment(v : string) {
+  public set Comment(v: string) {
     this.comment = v;
   }
 
-  public get Comment() : string {
+  public get Comment(): string {
     return this.comment;
   }
 
-  public set Id(v : number) {
+  public set Id(v: number) {
     this.id = v;
   }
 
-  public get Id() : number {
+  public get Id(): number {
     return this.id;
   }
 }

@@ -17,7 +17,7 @@ class CreateCommentCommand implements ICreateCommentCommand {
   }
 
   public async execute(model: CreateCommentModel): Promise<Comment> {
-    const comment = new Comment();
+    let comment = new Comment();
     const episode = await this.episodeRepository.get(model.EpisodeId);
     comment.Episode = episode;
     comment.IpAddressLocation = model.IpAddressLocation;

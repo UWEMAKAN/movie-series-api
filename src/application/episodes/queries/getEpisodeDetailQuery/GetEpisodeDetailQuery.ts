@@ -15,7 +15,7 @@ class GetEpisodeDetailQuery implements IGetEpisodeDetailQuery {
     episode.Name = data.Name;
     episode.ReleaseDate = data.ReleaseDate;
     episode.EpisodeCode = data.EpisodeCode;
-    episode.EpisodeComments = data.EpisodeComments;
+    episode.Comments = data.Comments;
     episode.Characters = data.Characters;
     episode.Created = data.Created;
     return episode;

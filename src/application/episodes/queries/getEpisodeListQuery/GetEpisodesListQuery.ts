@@ -16,7 +16,7 @@ class GetEpisodesListQuery implements IGetEpisodesListQuery {
       episode.Name = e.Name;
       episode.ReleaseDate = e.ReleaseDate;
       episode.EpisodeCode = e.EpisodeCode;
-      episode.EpisodeComments = e.EpisodeComments;
+      episode.Comments = e.Comments;
       episode.Characters = e.Characters;
       episode.Created = e.Created;
       return episode;

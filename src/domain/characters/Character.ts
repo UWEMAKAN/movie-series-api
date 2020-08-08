@@ -23,13 +23,13 @@ class Character implements IEntity {
   @Column()
   private gender: string;
 
-  @OneToOne(type => Location, { cascade: true })
+  @OneToOne(() => Location, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn()
-  private location: Location;
+  public location: Location;
 
   @ManyToMany(() => Episode, (episode) => episode.Characters)
   @JoinTable()
-  private episodes: Array<Episode>
+  public episodes: Array<Episode>
 
   @Column()
   private created: Date;
