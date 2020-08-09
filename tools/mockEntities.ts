@@ -205,6 +205,9 @@ export const deleteEpisodeCommand: IDeleteEpisodeCommand = {
  * Request, Response, NextFunction
  */
 export const req = {
+  app: {
+    get: {}
+  },
   params: {},
   body: {}
 } as unknown as Request;

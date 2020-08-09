@@ -24,32 +24,11 @@ jest.mock('typeorm', () => ({
     close: jest.fn().mockReturnValue(Promise.resolve()),
     getRepository: jest.fn(() => Promise.resolve({
       find: jest.fn(() => Promise.resolve(locations)),
-      findOneOrFail: jest.fn((id: number) => Promise.resolve(location)),
+      findOne: jest.fn((id: number) => Promise.resolve(location)),
       save: jest.fn().mockReturnValue(Promise.resolve()),
       remove: jest.fn().mockReturnValue(Promise.resolve())
-    })),
-  })),
-  Connection: jest.fn(() =>
-    Promise.resolve({
-      getRepository: jest.fn().mockReturnValue(
-        Promise.resolve({
-          find: jest.fn(() => Promise.resolve(locations)),
-          findOneOrFail: jest.fn((id: number) => Promise.resolve(location)),
-          save: jest.fn().mockReturnValue(Promise.resolve()),
-          remove: jest.fn().mockReturnValue(Promise.resolve())
-        })
-      ),
-      close: jest.fn().mockReturnValue(Promise.resolve())
-    })
-  ),
-  getRepository: jest.fn().mockReturnValue(
-    Promise.resolve({
-      find: jest.fn(() => Promise.resolve(locations)),
-      findOneOrFail: jest.fn((id: number) => Promise.resolve(location)),
-      save: jest.fn().mockReturnValue(Promise.resolve()),
-      remove: jest.fn().mockReturnValue(Promise.resolve())
-    })
-  )
+    }))
+  }))
 }));
 
 describe('AbstractRepository', () => {

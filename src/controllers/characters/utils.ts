@@ -16,7 +16,7 @@ export const filterCharacters = (
   return filteredCharacters;
 };
 
-export const sortCharacters = (characters: Array<Character>, sort: string, order: string) => {
+export const sortCharacters = (characters: Array<Character>, sort: string, order: string = '') => {
   if ((sort === 'name' && !order) || (sort === 'name' && order === 'ascending')) {
     characters.sort((a, b) => {
       const aName = a.FirstName + ' ' + a.LastName;

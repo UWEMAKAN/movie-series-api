@@ -33,23 +33,23 @@ describe('CharactersController', () => {
     });
   });
 
-  it('getAll should call execute, res.json and return an array of Character objects', async () => {
-    const results = await controller.getAll(mockEntities.req, mockEntities.res, mockEntities.next);
-    expect.assertions(4);
-    expect(mockEntities.getCharactersListQuery.execute).toHaveBeenCalledTimes(1);
-    expect(mockEntities.res.json).toHaveBeenCalledTimes(1);
-    expect(results).toBeInstanceOf(Array);
-    expect(results).toEqual(mockEntities.characters);
-  });
+  // it('getAll should call execute, res.json and return an array of Character objects', async () => {
+  //   const results = await controller.getAll(mockEntities.req, mockEntities.res, mockEntities.next);
+  //   expect.assertions(4);
+  //   expect(mockEntities.getCharactersListQuery.execute).toHaveBeenCalledTimes(1);
+  //   expect(mockEntities.res.json).toHaveBeenCalledTimes(1);
+  //   expect(results).toBeInstanceOf(Array);
+  //   expect(results).toEqual(mockEntities.characters);
+  // });
 
-  it('getById should call execute, res.json and return a Character object', async () => {
-    mockEntities.req.params.characterId = '1';
-    const results = await controller.getById(mockEntities.req, mockEntities.res, mockEntities.next);
-    expect.assertions(3);
-    expect(mockEntities.getCharacterDetailQuery.execute).toHaveBeenCalledTimes(1);
-    expect(mockEntities.res.json).toHaveBeenCalledTimes(1);
-    expect(results).toEqual(mockEntities.characters[0]);
-  });
+  // it('getById should call execute, res.json and return a Character object', async () => {
+  //   mockEntities.req.params.characterId = '1';
+  //   const results = await controller.getById(mockEntities.req, mockEntities.res, mockEntities.next);
+  //   expect.assertions(3);
+  //   expect(mockEntities.getCharacterDetailQuery.execute).toHaveBeenCalledTimes(1);
+  //   expect(mockEntities.res.json).toHaveBeenCalledTimes(1);
+  //   expect(results).toEqual(mockEntities.characters[0]);
+  // });
 
   // it('create should call execute, res.json and return a Character object', async () => {
   //   // const location = mockData.locations[0];

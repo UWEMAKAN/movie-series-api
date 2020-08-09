@@ -44,7 +44,6 @@ class AbstractRepository<T> implements IRepository<T> {
       const repository: Repository<T> = await connection.getRepository(this.repositoryType);
       const object = await repository.save(entity);
       await connection.close();
-      console.log(object);
       return object;
     } catch (err) {
       await connection.close();

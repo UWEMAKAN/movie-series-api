@@ -18,9 +18,9 @@ describe('CommentsController', () => {
       getCommentsListQuery: expect.any(Object),
       getCommentDetailQuery: expect.any(Object),
       getAll: expect.any(Function),
-      getById: expect.any(Function),
-      create: expect.any(Function),
-      delete: expect.any(Function)
+      getById: expect.any(Function)
+      // create: expect.any(Function),
+      // delete: expect.any(Function)
     });
   });
 

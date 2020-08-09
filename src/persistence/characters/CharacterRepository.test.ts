@@ -1,7 +1,7 @@
+import { createConnection } from 'typeorm';
 import Character from '../../domain/characters/Character';
 import CharacterRepository from './CharacterRepository';
 import AbstractRepository from '../shared/AbstractRepository';
-import { createConnection } from 'typeorm';
 
 describe('CharacterRepository', () => {
   it('should return a CharacterRepository object', () => {
