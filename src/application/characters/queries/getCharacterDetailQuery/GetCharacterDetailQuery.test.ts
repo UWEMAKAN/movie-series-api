@@ -14,7 +14,7 @@ describe('GetCharacterDetailQuery', () => {
     const result = await query.execute(3);
 
     expect.assertions(3);
-    expect(mockEntities.characterRepository.get).toHaveBeenCalledTimes(1);
+    expect(mockEntities.characterRepository.getById).toHaveBeenCalledTimes(1);
     expect(result).toBeInstanceOf(CharacterModel);
     expect(result).toMatchObject({
       id: expect.any(Number),

@@ -4,6 +4,10 @@ import * as mockData from '../../../tools/mockData';
 import * as mockEntities from '../../../tools/mockEntities';
 
 describe('Character Entity', () => {
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+  
   it('should create an object of type Character', () => {
     const character = new Character();
     expect.assertions(1);

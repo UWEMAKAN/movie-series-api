@@ -73,7 +73,7 @@ export const characters = mockData.characters.map((data, index) => {
 
 export const episodes = AllEpisodes.map((episode) => {
   episode.Characters = [...characters];
-  episode.EpisodeComments = [...AllComments];
+  episode.Comments = [...AllComments];
   return episode;
 });
 
@@ -101,7 +101,8 @@ export const episodeRepository: IEpisodeRepository = {
     episodes.push(episode);
     return Promise.resolve(episode);
   }),
-  remove: jest.fn().mockReturnValue(Promise.resolve())
+  remove: jest.fn().mockReturnValue(Promise.resolve()),
+  update: jest.fn()
 };
 
 export const locationRepository: ILocationRepository = {

@@ -7,6 +7,10 @@ import * as mockData from '../../../../../tools/mockData';
 const data = mockData.locations[0];
 
 describe('CreateLocationCommand', () => {
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+  
   it('execute should create a new object of type Location and call locationRepository.add to save it', async () => {
     const locationModel = new CreateLocationModel();
     locationModel.Name = data.name;

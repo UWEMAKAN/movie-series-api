@@ -1,39 +1,32 @@
-// import * as mockEntities from '../../../../../../../tools/mockEntities';
-// import CharacterRepositoryFacade from './CharacterRepositoryFacade';
-// import Character from '../../../../../../domain/characters/Character';
-// import Episode from '../../../../../../domain/episodes/Episode';
-// import Location from '../../../../../../domain/locations/Location';
+import * as mockEntities from '../../../../../../../tools/mockEntities';
+import EpisodeRepositoryFacade from './EpisodeRepositoryFacade';
+import Character from '../../../../../../domain/characters/Character';
+import Episode from '../../../../../../domain/episodes/Episode';
+import Location from '../../../../../../domain/locations/Location';
 
-// describe('CharacterRepositoryFacade', () => {
-//   afterAll(() => {
-//     jest.clearAllMocks();
-//   });
+describe('EpisodeRepositoryFacade', () => {
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
 
-//   const facade: CharacterRepositoryFacade = new CharacterRepositoryFacade(
-//     mockEntities.characterRepository,
-//     mockEntities.episodeRepository,
-//     mockEntities.locationRepository
-//   );
+  const facade: EpisodeRepositoryFacade = new EpisodeRepositoryFacade(
+    mockEntities.characterRepository,
+    mockEntities.episodeRepository
+  );
 
-//   it('getLocation should return a location object when called', async () => {
-//     const id = 2;
-//     const location = await facade.getLocation(id);
-//     expect.assertions(1);
-//     expect(location).toBeInstanceOf(Location);
-//   });
+  it('getCharacters should return an Array of Character objects', async () => {
+    const ids = [1, 3, 2, 4, 5];
+    const characters = await facade.getCharacters(ids);
+    expect.assertions(3);
+    expect(characters).toBeInstanceOf(Array);
+    expect(characters[1]).toBeInstanceOf(Character);
+    expect(mockEntities.characterRepository.get).toHaveBeenCalledTimes(5);
+  });
 
-//   it('getEpisodes should return an Array of Episode objects', async () => {
-//     const ids = [1, 3, 2, 4, 5];
-//     const episodes = await facade.getEpisodes(ids);
-//     expect.assertions(2);
-//     expect(episodes).toBeInstanceOf(Array);
-//     expect(episodes[1]).toBeInstanceOf(Episode);
-//   });
-
-//   it('addCharacter should call characterRepository.add method', async () => {
-//     const character = new Character();
-//     await facade.addCharacter(character);
-//     expect.assertions(1);
-//     expect(mockEntities.characterRepository.add).toHaveBeenCalledTimes(1);
-//   });
-// });
+  it('addEpisode should call episodeRepository.add method', async () => {
+    const episode = new Episode();
+    await facade.addEpisode(episode);
+    expect.assertions(1);
+    expect(mockEntities.episodeRepository.add).toHaveBeenCalledTimes(1);
+  });
+});

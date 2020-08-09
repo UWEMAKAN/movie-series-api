@@ -3,13 +3,13 @@ import EpisodeModel from './EpisodeModel';
 import IEpisodeRepository from '../../../interfaces/persistence/IEpisodeRepository';
 
 class GetEpisodeDetailQuery implements IGetEpisodeDetailQuery {
-  private readonly _repository: IEpisodeRepository;
+  private readonly repository: IEpisodeRepository;
 
   constructor(repository: IEpisodeRepository) {
-    this._repository = repository;
+    this.repository = repository;
   }
   public async execute(id: number): Promise<EpisodeModel> {
-    const data = await this._repository.getById(id);
+    const data = await this.repository.getById(id);
     const episode: EpisodeModel = new EpisodeModel();
     episode.Id = data.Id;
     episode.Name = data.Name;

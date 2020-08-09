@@ -20,7 +20,7 @@ describe('GetEpisodesListQuery', () => {
       name: expect.any(String),
       releaseDate: expect.any(Date),
       episodeCode: expect.any(String),
-      episodeComments: expect.any(Array),
+      Comments: expect.any(Array),
       characters: expect.any(Array),
       created: expect.any(Date)
     });

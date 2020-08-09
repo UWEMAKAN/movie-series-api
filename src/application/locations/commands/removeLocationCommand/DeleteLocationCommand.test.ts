@@ -3,6 +3,10 @@ import DeleteLocationModel from './DeleteLocationModel';
 import * as mockEntities from '../../../../../tools/mockEntities';
 
 describe('DeleteLocationCommand', () => {
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+  
   it('execute should delete the given location by calling locationRepository.remove', async () => {
     const location = mockEntities.locations[0];
     const model = new DeleteLocationModel();

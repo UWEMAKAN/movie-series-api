@@ -4,6 +4,10 @@ import * as mockData from '../../../tools/mockData';
 import * as mockEntities from '../../../tools/mockEntities';
 
 describe('Comment Entitiy', () => {
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+  
   it('should create and return an object of type Comment', () => {
     const comment = new Comment();
     expect.assertions(1);

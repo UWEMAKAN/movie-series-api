@@ -18,7 +18,7 @@ describe('Episode Entity', () => {
     episode.ReleaseDate = new Date(data.releaseDate);
     episode.Created = new Date();
     episode.Characters = [...mockEntities.characters];
-    episode.EpisodeComments = [...mockEntities.comments];
+    episode.Comments = [...mockEntities.comments];
     expect.assertions(1);
     expect(episode).toMatchObject({
       id: expect.any(Number),
@@ -26,7 +26,7 @@ describe('Episode Entity', () => {
       episodeCode: expect.any(String),
       releaseDate: expect.any(Date),
       characters: expect.any(Array),
-      episodeComments: expect.any(Array),
+      comments: expect.any(Array),
       created: expect.any(Date)
     });
   });

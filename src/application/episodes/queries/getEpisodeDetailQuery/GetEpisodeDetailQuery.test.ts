@@ -13,14 +13,14 @@ describe('GetEpisodeDetailQuery', () => {
     const results = await query.execute(id);
 
     expect.assertions(3);
-    expect(mockEntities.episodeRepository.get).toHaveBeenCalledTimes(1);
+    expect(mockEntities.episodeRepository.getById).toHaveBeenCalledTimes(1);
     expect(results).toBeInstanceOf(EpisodeModel);
     expect(results).toMatchObject({
       id: expect.any(Number),
       name: expect.any(String),
       releaseDate: expect.any(Date),
       episodeCode: expect.any(String),
-      episodeComments: expect.any(Array),
+      Comments: expect.any(Array),
       characters: expect.any(Array),
       created: expect.any(Date)
     });
