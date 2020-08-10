@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  # Backend API
+  backend_api:
+    container_name: backend_api
+    build: ./
+    command: npm start
+    working_dir: /usr/src/backend_api
+    environment:
+      DATABASE_URL: postgres://test@test:5432/global_accelerex
+    links:
+      -postgres
+    ports:
+      - "4500:4500"
+      - "4000:4000"
+    volumes:
+      - ./:/usr/src/backend_api
+
+  # Postgres
+  postgres:
+    build: ./postgres
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: global_accelerex
+      POSTGRES_HOST: postgres
+    ports:
+      - "5432:5432"
