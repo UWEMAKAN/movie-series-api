@@ -28,7 +28,7 @@ class Character implements IEntity {
   public location: Location;
 
   @ManyToMany(() => Episode, (episode) => episode.Characters)
-  @JoinTable()
+  @JoinTable({ name: 'episode_character' })
   public episodes: Array<Episode>
 
   @Column()

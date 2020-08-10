@@ -18,7 +18,7 @@ class Episode implements IEntity {
   private episodeCode: string;
 
   @ManyToMany(() => Character, (character) => character.episodes)
-  @JoinTable()
+  @JoinTable({ name: 'episode_character' })
   public characters: Array<Character>;
 
   @OneToMany(() => Comment, (comment: Comment) => comment.episode, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
